@@ -1,0 +1,17 @@
+Зона доступности: ru-central1-b
+Ubuntu 22.04
+Подсеть: default/default-ru-central1-b
+
+ssh-keygen -t ed25519
+cat /home/baranovsky/.ssh/id_ed25519.pub
+scp /home/baranovsky/main.tf  baranovskii@158.160.13.181:/home/baranovskii
+ssh baranovskii@158.160.13.181
+wget https://hashicorp-releases.yandexcloud.net/terraform/1.4.0/terraform_1.4.0_linux_amd64.zip
+unzip terraform_1.4.0_linux_amd64.zip
+
+terraform providers lock -net-mirror=https://terraform-mirror.yandexcloud.net -platform=linux_amd64 -platform=darwin_arm64 yandex-cloud/yandex
+
+terraform validate
+terraform plan
+terraform init
+
